@@ -7,9 +7,7 @@ services:
         tmpfs:
             - /run:size=16M,mode=1750,exec
             - /tmp:size=16M,mode=1777,noexec
-        ports:
-            - '${HTTP_PORT}:8000'
-            - '${HTTPS_PORT}:8443'
+
         volumes:
             - ${CONFIG}/web:/config:Z
             - ${CONFIG}/storage/web:/storage:Z
@@ -209,6 +207,7 @@ services:
             - WHITEBOARD_COLLAB_SERVER_URL_BASE
         networks:
             meet.jitsi:
+            rp-tls_dissonance-rp:
         depends_on:
             - jvb
 
@@ -551,3 +550,5 @@ services:
 # Custom network so all services can communicate using a FQDN
 networks:
     meet.jitsi:
+    rp-tls_dissonance-rp:
+      external: true
